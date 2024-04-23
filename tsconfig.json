@@ -38,6 +38,12 @@
       ],
       "@/styles/*": [
         "./src/styles/*"
+      ],
+      "@/types/*": [
+        "./src/types/*"
+      ],
+      "@/constant/*": [
+        "./src/constants/*"
       ]
     }
   },
