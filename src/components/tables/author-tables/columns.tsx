@@ -1,10 +1,11 @@
 'use client';
 import { ColumnDef } from '@tanstack/react-table';
 import { CellAction } from './cell-action';
-import { Book } from '@/constants/data';
+import { Author } from '@/constants/data';
 import { Checkbox } from '@/components/ui/checkbox';
 import { findAuthorsByBookIds } from '@/lib/authorToBookMatcher';
-export const columns: ColumnDef<Book>[] = [
+
+export const columns: ColumnDef<Author>[] = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -32,23 +33,30 @@ export const columns: ColumnDef<Book>[] = [
     accessorKey: 'name',
     header: 'NAME',
     cell(props) {
-      return `${props.row.original.title}`;
+      return `${props.row.original.username}`;
     },
   },
   {
-    accessorKey: 'item_type',
-    header: 'TYPE',
-    cell: ({ row }) => `${row.original.item_type.toUpperCase()}`,
+    accessorKey: 'firstName',
+    header: 'First Name',
+    cell(props) {
+      return `${props.row.original.firstname}`;
+    },
   },
   {
-    accessorKey: 'authors',
-    header: 'AUTHORS',
-    cell: ({ row }) =>
-      findAuthorsByBookIds(row.original.authors_ids).map((value, index) => (
-        <p key={index}>{value.username} &nbsp;</p>
-      )),
+    accessorKey: 'lastName',
+    header: 'Last Name',
+    cell(props) {
+      return `${props.row.original.lastname}`;
+    },
   },
-
+  {
+    accessorKey: 'booksIds',
+    header: 'Books',
+    cell(props) {
+      return `${props.row.original.books_ids}`;
+    },
+  },
   {
     id: 'actions',
     cell: ({ row }) => <CellAction data={row.original} />,
