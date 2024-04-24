@@ -43,9 +43,10 @@ export const columns: ColumnDef<Book>[] = [
   {
     accessorKey: 'authors',
     header: 'AUTHORS',
-    cell: ({ row }) => (
-      <p>{JSON.stringify(findAuthorsByBookIds(row.original.authors_ids))}</p>
-    ),
+    cell: ({ row }) =>
+      findAuthorsByBookIds(row.original.authors_ids).map((value, index) => (
+        <p key={index}>{value.username} &nbsp;</p>
+      )),
   },
 
   {
